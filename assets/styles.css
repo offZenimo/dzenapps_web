@@ -244,7 +244,7 @@ html[data-theme="light"] .icon-btn.theme .moon{opacity:0;transform:translateY(-6
 .drawer{position:fixed;inset:0;z-index:1200;pointer-events:none}
 .drawer.is-open{pointer-events:auto}
 .drawer .drawer-overlay{
-  position:absolute;inset:0;background:rgba(0,0,0,.45);
+  position:absolute;inset:0;background:rgba(0,0,0,.55);
   opacity:0;transition:opacity .18s ease
 }
 .drawer.is-open .drawer-overlay{opacity:1}
@@ -274,11 +274,11 @@ html[data-theme="light"] .icon-btn.theme .moon{opacity:0;transform:translateY(-6
 /* Social chooser modal */
 .modal{position:fixed;inset:0;z-index:1300;display:none;align-items:flex-end;justify-content:center;padding:14px}
 .modal.show{display:flex}
-.modal .modal-overlay{position:absolute;inset:0;background:rgba(0,0,0,.45)}
+.modal .modal-overlay{position:absolute;inset:0;background:rgba(0,0,0,.55)}
 .modal .modal-card{
   position:relative;width:min(520px,96vw);
   border:1px solid var(--border);border-radius:22px;
-  background:color-mix(in srgb,var(--surface) 82%,transparent);
+  background:color-mix(in srgb,var(--surface) 96%,transparent);
   box-shadow:var(--elev);
   padding:14px;
 }
@@ -334,3 +334,126 @@ html[data-theme="dark"] .icon-btn.theme:before{transform:translateX(0)}
 .controls{flex-wrap:wrap}
 .social-inline{display:flex;gap:8px;align-items:center}
 @media (max-width:980px){ .social-inline{display:none} }
+
+
+/* v0.3.1: typography + alignment fixes */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  line-height:1.2;
+  font-weight:600;
+}
+.pill button{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  line-height:1.15;
+}
+
+/* v0.3.1: theme toggle (pixel-perfect switch) */
+.icon-btn.theme{
+  width:56px;
+  height:36px;
+  border-radius:999px;
+  padding:0;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+}
+.icon-btn.theme:before{
+  content:"";
+  position:absolute;
+  top:4px;
+  left:4px;
+  width:28px;
+  height:28px;
+  border-radius:999px;
+  background:color-mix(in srgb,var(--surface) 94%,transparent);
+  box-shadow:var(--shadow);
+  transition:transform .22s ease;
+}
+html[data-theme="light"] .icon-btn.theme:before{ transform:translateX(20px); }
+html[data-theme="dark"] .icon-btn.theme:before{ transform:translateX(0); }
+
+.icon-btn.theme .sun,.icon-btn.theme .moon{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  width:16px;
+  height:16px;
+  opacity:.7;
+  pointer-events:none;
+}
+.icon-btn.theme .sun{ left:10px; }
+.icon-btn.theme .moon{ right:10px; }
+
+/* v0.3.1: social modal flag icons */
+.flag{
+  width:18px;height:12px;
+  border-radius:3px;
+  border:1px solid var(--border);
+  box-shadow:0 1px 6px rgba(0,0,0,.18);
+}
+.modal .btn{
+  justify-content:center;
+}
+.modal .btn .label{
+  font-weight:700;
+}
+
+/* v0.3.1: history timeline layout */
+.timeline{display:flex;flex-direction:column;gap:18px}
+.timeline-year{
+  text-align:center;
+  font-size:44px;
+  font-weight:800;
+  letter-spacing:1px;
+  margin:22px 0 8px;
+}
+.timeline-item{
+  display:grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap:14px;
+  align-items:center;
+}
+.timeline-item .media{
+  border-radius:22px;
+  border:1px solid var(--border);
+  background:linear-gradient(135deg, color-mix(in srgb,var(--accent) 40%, transparent), color-mix(in srgb,var(--accent2) 35%, transparent));
+  min-height:220px;
+  box-shadow:var(--elev);
+}
+.timeline-item .text{
+  padding:10px 4px;
+}
+.timeline-item:nth-of-type(even) .media{ order:2; }
+.timeline-item:nth-of-type(even) .text{ order:1; }
+
+@media (max-width:900px){
+  .timeline-item{ grid-template-columns:1fr; }
+  .timeline-item .media{ min-height:180px; }
+  .timeline-year{ font-size:34px; }
+}
+
+/* v0.3.1: team cards expand animation */
+.team-card .more{
+  overflow:hidden;
+  max-height:0;
+  transition:max-height .26s ease;
+}
+.team-card.open .more{
+  max-height:260px;
+}
+.team-head{
+  display:flex;align-items:center;gap:12px;
+}
+.avatar{
+  width:44px;height:44px;border-radius:999px;
+  border:1px solid var(--border);
+  background:linear-gradient(135deg, rgba(255,255,255,.12), rgba(0,0,0,.12));
+  flex:0 0 auto;
+}
+.team-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}

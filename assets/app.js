@@ -7,6 +7,8 @@ const SOCIAL_PREF_PREFIX="dzenapps_social_pref_";
  * Put your real links here later.
  * For IG/TT/YT we show a small language chooser (English/Español/Deutsch).
  */
+const assetBase = document.body?.dataset?.assets || "./";
+
 const SOCIAL_LINKS = {
   x: "",              // direct
   linkedin: "",       // direct
@@ -118,7 +120,9 @@ function openSocialChooser(network){
   // Buttons
   modal.querySelectorAll("[data-social-locale]").forEach(btn=>{
     const locale = btn.getAttribute("data-social-locale");
-    btn.textContent = t(`social.${locale}`);
+    
+    const label = t(`social.${locale}`);
+    btn.innerHTML = `<img class="flag" alt="" src="${assetBase}assets/flags/${locale}.svg"><span class="label">${label}</span>`;
     btn.onclick = ()=>{
       localStorage.setItem(SOCIAL_PREF_PREFIX + network, locale);
       const links = SOCIAL_LINKS[network] || {};
