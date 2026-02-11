@@ -1,12 +1,11 @@
-# DzenApps static website — v2 (GitHub Pages ready)
+# DzenApps static website — v3 (GitHub Pages ready)
 
 Static website (no build step) with:
 - Dark/light themes (default: dark)
 - 3 languages (RU/EN/BE)
-- Region toggle scaffold (Global/ES/DE)
-- Pages: Home, Products, Services, About/Contacts, News, Terms, Privacy
+- - Pages: Home, Products, Services, About/Contacts, News, Terms, Privacy
 - Scroll reveal animations + subtle background motion (with reduced-motion support)
-- Social buttons prepared (currently placeholder: "Soon")
+- Social buttons: X, LinkedIn (direct) + Instagram/TikTok/YouTube chooser (EN/ES/DE)
 - Email buttons: mailto:dzenapps@gmail.com (with subject)
 
 ## Deploy to GitHub Pages

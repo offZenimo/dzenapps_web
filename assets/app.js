@@ -1,8 +1,19 @@
 const THEME_KEY="dzenapps_theme";
 const LOCALE_KEY="dzenapps_locale";
-const REGION_KEY="dzenapps_region";
 const SUPPORTED=["ru","en","be"];
-const SUPPORTED_REGIONS=["global","es","de"];
+
+const SOCIAL_PREF_PREFIX="dzenapps_social_pref_";
+/**
+ * Put your real links here later.
+ * For IG/TT/YT we show a small language chooser (English/Español/Deutsch).
+ */
+const SOCIAL_LINKS = {
+  x: "",              // direct
+  linkedin: "",       // direct
+  instagram: { en:"", es:"", de:"" },
+  tiktok:    { en:"", es:"", de:"" },
+  youtube:   { en:"", es:"", de:"" }
+};
 
 function normalizeLocale(input){
   if(!input) return null;
@@ -10,15 +21,6 @@ function normalizeLocale(input){
   if(!raw) return null;
   const base=raw.toLowerCase().split("-")[0];
   return SUPPORTED.includes(base)?base:null;
-}
-function normalizeRegion(input){
-  if(!input) return null;
-  const v=String(input).trim().toLowerCase();
-  return SUPPORTED_REGIONS.includes(v)?v:null;
-}
-function getStoredTheme(){
-  const t=localStorage.getItem(THEME_KEY);
-  return (t==="light"||t==="dark")?t:null;
 }
 function t(key, vars={}){
   const dict=I18N[window.__locale]||I18N.en;
@@ -28,39 +30,36 @@ function t(key, vars={}){
 function setTheme(theme){
   document.documentElement.setAttribute("data-theme", theme);
   localStorage.setItem(THEME_KEY, theme);
-  const btn=document.querySelector("[data-action='toggle-theme']");
-  if(btn){
-    btn.querySelector("[data-theme-label]").textContent = (theme==="dark") ? t("ui.dark") : t("ui.light");
-  }
 }
-function toast(message, sub=""){
+function toast(message){
   const el=document.querySelector("#toast");
   if(!el) return;
   el.querySelector("[data-toast-text]").textContent=message;
-  el.querySelector("[data-toast-sub]").textContent=sub||"";
+  el.querySelector("[data-toast-sub]").textContent="";
   el.classList.add("show");
   clearTimeout(window.__toastTimer);
   window.__toastTimer=setTimeout(()=>el.classList.remove("show"),2200);
 }
 function applyTranslations(){
   const page=document.body?.dataset?.page||"home";
-  document.title = t(`title.${page}`, {year:new Date().getFullYear()});
+  const year = new Date().getFullYear();
+  const date = new Date().toISOString().slice(0,10);
+
+  const customTitleKey = document.querySelector("[data-page-title-i18n]")?.getAttribute("data-page-title-i18n");
+  if(customTitleKey){
+    document.title = t(customTitleKey, {year, date});
+  }else{
+    document.title = t(`title.${page}`, {year, date});
+  }
+
   document.querySelectorAll("[data-i18n]").forEach(el=>{
     const key=el.getAttribute("data-i18n");
-    el.textContent = t(key, {year:new Date().getFullYear(), date:new Date().toISOString().slice(0,10)});
+    el.textContent = t(key, {year, date});
   });
-  const theme=document.documentElement.getAttribute("data-theme")||"dark";
-  const themeBtn=document.querySelector("[data-action='toggle-theme']");
-  if(themeBtn){
-    themeBtn.querySelector("[data-theme-label]").textContent = (theme==="dark") ? t("ui.dark") : t("ui.light");
-  }
 }
-function updateToggleStates(){
+function updateLangStates(){
   document.querySelectorAll("[data-lang]").forEach(btn=>{
     btn.setAttribute("aria-pressed", String(btn.getAttribute("data-lang")===window.__locale));
-  });
-  document.querySelectorAll("[data-region]").forEach(btn=>{
-    btn.setAttribute("aria-pressed", String(btn.getAttribute("data-region")===window.__region));
   });
 }
 function wireReveal(){
@@ -79,75 +78,115 @@ function wireReveal(){
   }, {threshold:0.12});
   items.forEach(el=>io.observe(el));
 }
-function wireSocialButtons(){
-  const socialLinks={
-    global:{default:{x:"",linkedin:"",instagram:"",tiktok:""},ru:{x:"",linkedin:"",instagram:"",tiktok:""},en:{x:"",linkedin:"",instagram:"",tiktok:""},be:{x:"",linkedin:"",instagram:"",tiktok:""}},
-    es:{default:{x:"",linkedin:"",instagram:"",tiktok:""},en:{x:"",linkedin:"",instagram:"",tiktok:""}},
-    de:{default:{x:"",linkedin:"",instagram:"",tiktok:""},en:{x:"",linkedin:"",instagram:"",tiktok:""}}
-  };
-  const bucket=socialLinks[window.__region]||socialLinks.global;
-  const links=bucket[window.__locale]||bucket.default;
-
-  document.querySelectorAll("[data-social]").forEach(el=>{
-    const key=el.getAttribute("data-social");
-    const url=links[key]||"";
-    const clone=el.cloneNode(true);
-    el.parentNode.replaceChild(clone, el);
-
-    if(url){
-      clone.removeAttribute("disabled");
-      clone.addEventListener("click", ()=>window.open(url,"_blank","noopener,noreferrer"));
-    }else{
-      clone.setAttribute("disabled","true");
-      clone.title=t("ui.soon");
-      clone.addEventListener("click", ()=>toast(t("toast.soon")));
-    }
-  });
-}
 function mailto(subjectKey=""){
-  toast(t("toast.mail"));
   const subject = subjectKey ? t(subjectKey) : "Hello DzenApps";
   const body = encodeURIComponent("Hi DzenApps,\n\n");
   window.location.href = `mailto:dzenapps@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`;
 }
+
+function openDrawer(){
+  const d=document.querySelector("#drawer");
+  if(!d) return;
+  d.classList.add("is-open");
+  d.setAttribute("aria-hidden","false");
+  document.body.style.overflow="hidden";
+}
+function closeDrawer(){
+  const d=document.querySelector("#drawer");
+  if(!d) return;
+  d.classList.remove("is-open");
+  d.setAttribute("aria-hidden","true");
+  document.body.style.overflow="";
+}
+
+function openSocialChooser(network){
+  const modal=document.querySelector("#socialModal");
+  if(!modal) return;
+
+  modal.setAttribute("data-network", network);
+  modal.classList.add("show");
+
+  // Title
+  const titleEl=modal.querySelector("[data-social-title]");
+  if(titleEl){
+    const nameKey = `social.${network}`;
+    titleEl.textContent = `${t("social.choose")} — ${t(nameKey)}`;
+  }
+  const noteEl=modal.querySelector("[data-social-note]");
+  if(noteEl) noteEl.textContent = t("social.note");
+
+  // Buttons
+  modal.querySelectorAll("[data-social-locale]").forEach(btn=>{
+    const locale = btn.getAttribute("data-social-locale");
+    btn.textContent = t(`social.${locale}`);
+    btn.onclick = ()=>{
+      localStorage.setItem(SOCIAL_PREF_PREFIX + network, locale);
+      const links = SOCIAL_LINKS[network] || {};
+      const url = links[locale] || "";
+      if(url){
+        window.open(url,"_blank","noopener,noreferrer");
+      }else{
+        toast(t("toast.soon"));
+      }
+      closeSocialChooser();
+    };
+  });
+
+  // Close
+  modal.querySelectorAll("[data-action='close-social']").forEach(btn=>{
+    btn.onclick = closeSocialChooser;
+  });
+}
+function closeSocialChooser(){
+  const modal=document.querySelector("#socialModal");
+  if(!modal) return;
+  modal.classList.remove("show");
+  modal.removeAttribute("data-network");
+}
+
+function handleSocialClick(network){
+  const value = SOCIAL_LINKS[network];
+  if(typeof value === "string"){
+    if(value){
+      window.open(value,"_blank","noopener,noreferrer");
+    }else{
+      toast(t("toast.soon"));
+    }
+    return;
+  }
+  // chooser
+  openSocialChooser(network);
+}
+
 function setLocale(locale){
   const norm=normalizeLocale(locale) || "en";
   window.__locale=norm;
   localStorage.setItem(LOCALE_KEY,norm);
   document.documentElement.setAttribute("lang", norm);
-  updateToggleStates();
+  updateLangStates();
   applyTranslations();
-  wireSocialButtons();
-}
-function setRegion(region){
-  const norm=normalizeRegion(region) || "global";
-  window.__region=norm;
-  localStorage.setItem(REGION_KEY,norm);
-  updateToggleStates();
-  applyTranslations();
-  wireSocialButtons();
 }
 function init(){
   window.__locale = normalizeLocale(localStorage.getItem(LOCALE_KEY)) || normalizeLocale(navigator.language) || "en";
-  window.__region = normalizeRegion(localStorage.getItem(REGION_KEY)) || "global";
-  setTheme(getStoredTheme() || "dark");
+  const themeStored = localStorage.getItem(THEME_KEY);
+  const theme = (themeStored==="light"||themeStored==="dark") ? themeStored : "dark";
+  setTheme(theme);
   setLocale(window.__locale);
-  setRegion(window.__region);
 
+  // theme toggle
+  document.querySelectorAll("[data-action='toggle-theme']").forEach(btn=>{
+    btn.addEventListener("click", ()=>{
+      const current=document.documentElement.getAttribute("data-theme")||"dark";
+      setTheme(current==="dark"?"light":"dark");
+    });
+  });
+
+  // language toggle
   document.querySelectorAll("[data-lang]").forEach(btn=>{
     btn.addEventListener("click", ()=>setLocale(btn.getAttribute("data-lang")));
   });
-  document.querySelectorAll("[data-region]").forEach(btn=>{
-    btn.addEventListener("click", ()=>setRegion(btn.getAttribute("data-region")));
-  });
-  const themeBtn=document.querySelector("[data-action='toggle-theme']");
-  if(themeBtn){
-    themeBtn.addEventListener("click", ()=>{
-      const current=document.documentElement.getAttribute("data-theme")||"dark";
-      setTheme(current==="dark"?"light":"dark");
-      applyTranslations();
-    });
-  }
+
+  // email
   document.querySelectorAll("[data-action='email']").forEach(btn=>{
     btn.addEventListener("click", ()=>{
       const subject=btn.getAttribute("data-mail-subject-i18n")||"";
@@ -155,13 +194,34 @@ function init(){
     });
   });
 
+  // current nav
   const current=document.body?.dataset?.page;
   if(current){
     const link=document.querySelector(`[data-nav='${current}']`);
     if(link) link.setAttribute("aria-current","page");
   }
+
+  // drawer
+  document.querySelectorAll("[data-action='open-menu']").forEach(btn=>btn.addEventListener("click", openDrawer));
+  document.querySelectorAll("[data-action='close-menu']").forEach(btn=>btn.addEventListener("click", closeDrawer));
+  document.addEventListener("keydown", (e)=>{
+    if(e.key==="Escape"){
+      closeDrawer();
+      closeSocialChooser();
+    }
+  });
+
+  // socials
+  document.querySelectorAll("[data-social]").forEach(btn=>{
+    const network=btn.getAttribute("data-social");
+    btn.addEventListener("click", ()=>handleSocialClick(network));
+  });
+
+  // close modal overlay
+  const overlay = document.querySelector("#socialModal .modal-overlay");
+  if(overlay) overlay.addEventListener("click", closeSocialChooser);
+
   wireReveal();
-  wireSocialButtons();
   applyTranslations();
 }
 document.addEventListener("DOMContentLoaded", init);

@@ -5,20 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="DzenApps — games and apps studio" />
   <meta name="theme-color" content="#0b0d12" />
-  <link rel="icon" type="image/png" href="./assets/favicon.png" />
+  <link rel="icon" type="image/png" href="../assets/favicon.png" />
   <title>DzenApps</title>
-  <link rel="stylesheet" href="./assets/styles.css" />
+  <link rel="stylesheet" href="../assets/styles.css" />
   
 </head>
-<body data-page="news">
+<body data-page="newsPost">
   <div class="bg-blobs" aria-hidden="true"></div>
   <a class="skip" href="#content">Skip to content</a>
   
   <header>
     <div class="container header-inner">
-      <a class="brand" href="./index.html" aria-label="DzenApps">
+      <a class="brand" href="../index.html" aria-label="DzenApps">
         <div class="logo" aria-hidden="true">
-          <img src="./assets/logo-64.png" alt="" />
+          <img src="../assets/logo-64.png" alt="" />
         </div>
         <div>
           <strong>DzenApps</strong>
@@ -28,11 +28,11 @@
 
       <nav aria-label="Primary">
         <ul>
-          <li><a class="nav-link" data-nav="home" href="./index.html" data-i18n="nav.home"></a></li>
-          <li><a class="nav-link" data-nav="products" href="./products.html" data-i18n="nav.products"></a></li>
-          <li><a class="nav-link" data-nav="services" href="./services.html" data-i18n="nav.services"></a></li>
-          <li><a class="nav-link" data-nav="about" href="./about.html" data-i18n="nav.about"></a></li>
-          <li><a class="nav-link" data-nav="news" href="./news.html" data-i18n="nav.news"></a></li>
+          <li><a class="nav-link" data-nav="home" href="../index.html" data-i18n="nav.home"></a></li>
+          <li><a class="nav-link" data-nav="products" href="../products.html" data-i18n="nav.products"></a></li>
+          <li><a class="nav-link" data-nav="services" href="../services.html" data-i18n="nav.services"></a></li>
+          <li><a class="nav-link" data-nav="about" href="../about.html" data-i18n="nav.about"></a></li>
+          <li><a class="nav-link" data-nav="news" href="../news.html" data-i18n="nav.news"></a></li>
         </ul>
       </nav>
 
@@ -65,7 +65,7 @@
       <div class="drawer-header">
         <div style="display:flex;align-items:center;gap:10px;">
           <div class="logo" aria-hidden="true" style="width:34px;height:34px;border-radius:14px;">
-            <img src="./assets/logo-64.png" alt="" />
+            <img src="../assets/logo-64.png" alt="" />
           </div>
           <strong>DzenApps</strong>
         </div>
@@ -75,18 +75,18 @@
       </div>
 
       <div class="drawer-nav" aria-label="Navigation">
-        <a href="./index.html"><span data-i18n="nav.home"></span> <span>→</span></a>
-        <a href="./products.html"><span data-i18n="nav.products"></span> <span>→</span></a>
-        <a href="./services.html"><span data-i18n="nav.services"></span> <span>→</span></a>
-        <a href="./about.html"><span data-i18n="nav.about"></span> <span>→</span></a>
-        <a href="./news.html"><span data-i18n="nav.news"></span> <span>→</span></a>
+        <a href="../index.html"><span data-i18n="nav.home"></span> <span>→</span></a>
+        <a href="../products.html"><span data-i18n="nav.products"></span> <span>→</span></a>
+        <a href="../services.html"><span data-i18n="nav.services"></span> <span>→</span></a>
+        <a href="../about.html"><span data-i18n="nav.about"></span> <span>→</span></a>
+        <a href="../news.html"><span data-i18n="nav.news"></span> <span>→</span></a>
       </div>
 
       <div class="drawer-section">
         <div class="drawer-row">
           <button class="btn primary" type="button" data-action="email" data-mail-subject-i18n="title.home" data-i18n="ui.contact"></button>
-          <a class="btn" href="./terms.html" data-i18n="nav.terms"></a>
-          <a class="btn" href="./privacy.html" data-i18n="nav.privacy"></a>
+          <a class="btn" href="../terms.html" data-i18n="nav.terms"></a>
+          <a class="btn" href="../privacy.html" data-i18n="nav.privacy"></a>
         </div>
       </div>
 
@@ -126,39 +126,22 @@
     <div class="container">
       
 <section class="hero reveal">
-  <h1 data-i18n="news.title"></h1>
-  <p data-i18n="news.subtitle"></p>
+  <h1 data-i18n="news.product-showcase.title" data-page-title-i18n="title.news.product-showcase"></h1>
+  <p data-i18n="news.product-showcase.lead"></p>
+  <div class="hero-meta">
+    <span class="badge" data-i18n="news.product-showcase.date"></span>
+    <span class="badge accent" data-i18n="nav.news"></span>
+  </div>
 </section>
 
 <section class="section reveal">
-  <div class="grid">
-    <article class="card reveal delay-1">
-      <div class="tag"><span class="badge" data-i18n="news.site-draft.date"></span><span class="badge good">Update</span></div>
-      <h3 data-i18n="news.site-draft.title"></h3>
-      <p data-i18n="news.site-draft.lead"></p>
-      <a class="btn" href="./news/site-draft.html">→</a>
-    </article>
-
-    <article class="card reveal delay-2">
-      <div class="tag"><span class="badge" data-i18n="news.product-showcase.date"></span><span class="badge">Draft</span></div>
-      <h3 data-i18n="news.product-showcase.title"></h3>
-      <p data-i18n="news.product-showcase.lead"></p>
-      <a class="btn" href="./news/product-showcase.html">→</a>
-    </article>
-
-    <article class="card reveal delay-3">
-      <div class="tag"><span class="badge" data-i18n="news.prototype-release.date"></span><span class="badge accent">Process</span></div>
-      <h3 data-i18n="news.prototype-release.title"></h3>
-      <p data-i18n="news.prototype-release.lead"></p>
-      <a class="btn" href="./news/prototype-release.html">→</a>
-    </article>
-
-    <article class="card reveal delay-3">
-      <div class="tag"><span class="badge">Next</span></div>
-      <h3>News template</h3>
-      <p>Each post is a separate page now — so we can expand later (images, etc.).</p>
-      <button class="btn primary" type="button" data-action="email" data-mail-subject-i18n="title.news">Email</button>
-    </article>
+  <p data-i18n="news.product-showcase.p1"></p>
+  <div class="hr"></div>
+  <p data-i18n="news.product-showcase.p2"></p>
+  <div class="hr"></div>
+  <div class="hero-actions">
+    <a class="btn" href="../news.html">← <span data-i18n="nav.news"></span></a>
+    <button class="btn primary" type="button" data-action="email" data-mail-subject-i18n="title.news" data-i18n="ui.contact"></button>
   </div>
 </section>
 
@@ -172,8 +155,8 @@
         <small class="muted" data-i18n="footer.note"></small>
       </div>
       <div class="footer-links" aria-label="Footer links">
-        <a href="./terms.html" data-i18n="nav.terms"></a>
-        <a href="./privacy.html" data-i18n="nav.privacy"></a>
+        <a href="../terms.html" data-i18n="nav.terms"></a>
+        <a href="../privacy.html" data-i18n="nav.privacy"></a>
         <a href="mailto:dzenapps@gmail.com">dzenapps@gmail.com</a>
       </div>
     </div>
@@ -184,8 +167,8 @@
     <small data-toast-sub></small>
   </div>
 
-  <script src="./assets/i18n.js"></script>
-  <script src="./assets/app.js"></script>
+  <script src="../assets/i18n.js"></script>
+  <script src="../assets/app.js"></script>
 
 </body>
 </html>
