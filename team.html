@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="./assets/styles.css" />
   
 </head>
-<body data-page="about">
+<body data-page="team" data-page-title-i18n="title.team">
   <div class="bg-blobs" aria-hidden="true"></div>
   <a class="skip" href="#content">Skip to content</a>
   
@@ -133,52 +133,71 @@
 
   <main id="content">
     <div class="container">
-      <section class="hero reveal">
-  <h1 data-i18n="about.title"></h1>
-  <p data-i18n="about.subtitle"></p>
-  <div class="hero-actions">
-    <button class="btn primary" type="button" data-action="email" data-mail-subject-i18n="title.about" data-i18n="ui.contact"></button>
+
+<section class="hero reveal">
+  <h1 data-i18n="team.title"></h1>
+  <p data-i18n="team.subtitle"></p>
+</section>
+
+<section class="section reveal">
+  <div class="grid">
+    <article class="card reveal delay-1">
+      <div class="tag"><span class="badge good">Founder</span><span class="badge">Product</span></div>
+      <h3>Dzen</h3>
+      <p>Founder / Product</p>
+      <details>
+        <summary class="btn" style="display:inline-flex;cursor:pointer" data-i18n="team.card.more"></summary>
+        <div class="hr"></div>
+        <p class="muted">Email: <a href="mailto:dzenapps@gmail.com">dzenapps@gmail.com</a></p>
+        <p class="muted">Focus: vision, roadmap, partnerships.</p>
+      </details>
+    </article>
+
+    <article class="card reveal delay-2">
+      <div class="tag"><span class="badge">Engineering</span></div>
+      <h3>Alex</h3>
+      <p>Lead Developer</p>
+      <details>
+        <summary class="btn" style="display:inline-flex;cursor:pointer" data-i18n="team.card.more"></summary>
+        <div class="hr"></div>
+        <p class="muted">Email: dev@dzenapps.com (placeholder)</p>
+        <p class="muted">Stack: mobile, web, backend.</p>
+      </details>
+    </article>
+
+    <article class="card reveal delay-3">
+      <div class="tag"><span class="badge">Design</span></div>
+      <h3>Mira</h3>
+      <p>UI/UX Designer</p>
+      <details>
+        <summary class="btn" style="display:inline-flex;cursor:pointer" data-i18n="team.card.more"></summary>
+        <div class="hr"></div>
+        <p class="muted">Email: design@dzenapps.com (placeholder)</p>
+        <p class="muted">Focus: UI kits, motion, branding.</p>
+      </details>
+    </article>
+
+    <article class="card reveal delay-3">
+      <div class="tag"><span class="badge">QA</span><span class="badge accent">Ops</span></div>
+      <h3>Sam</h3>
+      <p>QA / Release</p>
+      <details>
+        <summary class="btn" style="display:inline-flex;cursor:pointer" data-i18n="team.card.more"></summary>
+        <div class="hr"></div>
+        <p class="muted">Email: qa@dzenapps.com (placeholder)</p>
+        <p class="muted">Focus: testing, checklists, releases.</p>
+      </details>
+    </article>
   </div>
 
-  <div class="hero-actions">
-    <a class="btn" href="./history.html" data-i18n="about.historyBtn"></a>
-    <a class="btn" href="./team.html" data-i18n="about.teamBtn"></a>
-  </div>
-
-</section>
-
-<section class="section reveal">
-  <h2 data-i18n="about.missionTitle"></h2>
-  <p data-i18n="about.missionText"></p>
-</section>
-
-<section class="section reveal">
-  <h2 data-i18n="about.valuesTitle"></h2>
-  <ul>
-    <li data-i18n="about.v1"></li>
-    <li data-i18n="about.v2"></li>
-    <li data-i18n="about.v3"></li>
-  </ul>
-</section>
-
-<section class="section reveal">
-  <h2 data-i18n="about.contactTitle"></h2>
-  <div class="notice">
-    <div aria-hidden="true">✉️</div>
+  <div class="notice" style="margin-top:14px">
+    <div aria-hidden="true">ℹ️</div>
     <div>
-      <p><strong data-i18n="about.emailLabel"></strong> <a href="mailto:dzenapps@gmail.com" data-i18n="about.emailValue"></a></p>
-      <p data-i18n="about.availability"></p>
-      <div class="hr"></div>
-      <p data-i18n="about.socialNote"></p>
+      <p>These are placeholder people/cards. Replace with real names, roles, and contacts.</p>
     </div>
   </div>
 </section>
-
-<section class="section reveal">
-  <h2 data-i18n="about.locationTitle"></h2>
-  <p data-i18n="about.locationText"></p>
-</section>
-    </div>
+</div>
   </main>
   
   <footer>

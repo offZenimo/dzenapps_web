@@ -166,6 +166,27 @@ function setLocale(locale){
   updateLangStates();
   applyTranslations();
 }
+
+function wireProductFilters(){
+  const bar=document.querySelector("[data-product-filters]");
+  if(!bar) return;
+  const cards=[...document.querySelectorAll("[data-product-card]")];
+  const setActive=(key)=>{
+    bar.querySelectorAll("button[data-filter]").forEach(b=>{
+      b.setAttribute("aria-pressed", String(b.getAttribute("data-filter")===key));
+    });
+    cards.forEach(c=>{
+      const cat=c.getAttribute("data-category")||"";
+      const show = (key==="all") || (cat===key);
+      c.style.display = show ? "" : "none";
+    });
+  };
+  bar.querySelectorAll("button[data-filter]").forEach(btn=>{
+    btn.addEventListener("click", ()=>setActive(btn.getAttribute("data-filter")));
+  });
+  setActive("all");
+}
+
 function init(){
   window.__locale = normalizeLocale(localStorage.getItem(LOCALE_KEY)) || normalizeLocale(navigator.language) || "en";
   const themeStored = localStorage.getItem(THEME_KEY);
@@ -221,6 +242,7 @@ function init(){
   const overlay = document.querySelector("#socialModal .modal-overlay");
   if(overlay) overlay.addEventListener("click", closeSocialChooser);
 
+  wireProductFilters();
   wireReveal();
   applyTranslations();
 }

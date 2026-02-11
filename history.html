@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="./assets/styles.css" />
   
 </head>
-<body data-page="about">
+<body data-page="history" data-page-title-i18n="title.history">
   <div class="bg-blobs" aria-hidden="true"></div>
   <a class="skip" href="#content">Skip to content</a>
   
@@ -133,52 +133,31 @@
 
   <main id="content">
     <div class="container">
-      <section class="hero reveal">
-  <h1 data-i18n="about.title"></h1>
-  <p data-i18n="about.subtitle"></p>
-  <div class="hero-actions">
-    <button class="btn primary" type="button" data-action="email" data-mail-subject-i18n="title.about" data-i18n="ui.contact"></button>
-  </div>
 
-  <div class="hero-actions">
-    <a class="btn" href="./history.html" data-i18n="about.historyBtn"></a>
-    <a class="btn" href="./team.html" data-i18n="about.teamBtn"></a>
+<section class="hero reveal">
+  <h1 data-i18n="history.title"></h1>
+  <p data-i18n="history.subtitle"></p>
+  <div class="hero-meta">
+    <span class="badge">2019</span>
+    <span class="badge">2023</span>
+    <span class="badge accent">2026</span>
   </div>
-
 </section>
 
 <section class="section reveal">
-  <h2 data-i18n="about.missionTitle"></h2>
-  <p data-i18n="about.missionText"></p>
-</section>
-
-<section class="section reveal">
-  <h2 data-i18n="about.valuesTitle"></h2>
   <ul>
-    <li data-i18n="about.v1"></li>
-    <li data-i18n="about.v2"></li>
-    <li data-i18n="about.v3"></li>
+    <li><strong>2019</strong> — Idea & first prototypes.</li>
+    <li><strong>2021</strong> — First experiments and small releases.</li>
+    <li><strong>2023</strong> — Studio workflow, tooling, and client work.</li>
+    <li><strong>2026</strong> — Public site + product showcase.</li>
   </ul>
-</section>
-
-<section class="section reveal">
-  <h2 data-i18n="about.contactTitle"></h2>
-  <div class="notice">
-    <div aria-hidden="true">✉️</div>
-    <div>
-      <p><strong data-i18n="about.emailLabel"></strong> <a href="mailto:dzenapps@gmail.com" data-i18n="about.emailValue"></a></p>
-      <p data-i18n="about.availability"></p>
-      <div class="hr"></div>
-      <p data-i18n="about.socialNote"></p>
-    </div>
+  <div class="hr"></div>
+  <div class="hero-actions">
+    <a class="btn" href="./about.html">← <span data-i18n="nav.about"></span></a>
+    <a class="btn primary" href="./products.html"><span data-i18n="nav.products"></span> →</a>
   </div>
 </section>
-
-<section class="section reveal">
-  <h2 data-i18n="about.locationTitle"></h2>
-  <p data-i18n="about.locationText"></p>
-</section>
-    </div>
+</div>
   </main>
   
   <footer>

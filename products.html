@@ -38,9 +38,9 @@
 
       <div class="controls" aria-label="Controls">
         <div class="pill" aria-label="Language">
-          <button type="button" data-lang="ru" aria-pressed="false">RU</button>
-          <button type="button" data-lang="en" aria-pressed="false">EN</button>
-          <button type="button" data-lang="be" aria-pressed="false">BE</button>
+          <button type="button" data-lang="ru" aria-pressed="false"><span data-i18n="lang.ru"></span></button>
+          <button type="button" data-lang="en" aria-pressed="false"><span data-i18n="lang.en"></span></button>
+          <button type="button" data-lang="be" aria-pressed="false"><span data-i18n="lang.be"></span></button>
         </div>
 
         <button class="icon-btn theme" type="button" data-action="toggle-theme" aria-label="Toggle theme">
@@ -51,6 +51,15 @@
         <button class="icon-btn" type="button" data-action="email" data-mail-subject-i18n="title.home" aria-label="Email">
           <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5L4 8V6l8 5 8-5v2z"/></svg>
         </button>
+
+        
+        <div class="social-inline" aria-label="Socials">
+          <button class="icon-btn" type="button" data-social="x" aria-label="X"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.9 2H22l-6.8 7.8L23 22h-6.8l-5.3-6.9L4.9 22H2l7.3-8.4L1 2h7l4.8 6.2L18.9 2zm-1.2 18h1.7L6.2 3.9H4.3L17.7 20z"/></svg></button>
+          <button class="icon-btn" type="button" data-social="linkedin" aria-label="LinkedIn"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.11 1 2.48 1c1.38 0 2.5 1.12 2.5 2.5zM0.5 23.5h4V7.5h-4v16zM8.5 7.5h3.8v2.2h.1c.5-1 1.9-2.2 4-2.2 4.3 0 5.1 2.8 5.1 6.5v9.5h-4v-8.4c0-2 0-4.5-2.8-4.5s-3.2 2.1-3.2 4.4v8.5h-4v-16z"/></svg></button>
+          <button class="icon-btn" type="button" data-social="instagram" aria-label="Instagram"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm10 2H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3zm-5 3.5A5.5 5.5 0 1 1 6.5 13 5.5 5.5 0 0 1 12 7.5zm0 2A3.5 3.5 0 1 0 15.5 13 3.5 3.5 0 0 0 12 9.5zM18 6.3a1.1 1.1 0 1 1-1.1 1.1A1.1 1.1 0 0 1 18 6.3z"/></svg></button>
+          <button class="icon-btn" type="button" data-social="tiktok" aria-label="TikTok"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M16.5 2c.7 2.9 2.5 4.7 5.5 5v4.1c-2 0-3.8-.6-5.4-1.7V16c0 4-3.2 7-7.3 7-3.9 0-7.3-3.1-7.3-7.3 0-4.2 3.4-7.3 7.4-7.3.5 0 1 .1 1.5 .2V13c-.5-.2-1-.4-1.6-.4-1.8 0-3.3 1.4-3.3 3.2 0 2 1.5 3.2 3.3 3.2 1.9 0 3.1-1.2 3.2-3.2V2h4z"/></svg></button>
+          <button class="icon-btn" type="button" data-social="youtube" aria-label="YouTube"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.2a3.5 3.5 0 0 0-2.5-2.5C18.7 3 12 3 12 3s-6.7 0-9 0.7A3.5 3.5 0 0 0 .5 6.2 36.5 36.5 0 0 0 0 12a36.5 36.5 0 0 0 .5 5.8 3.5 3.5 0 0 0 2.5 2.5C5.3 21 12 21 12 21s6.7 0 9-.7a3.5 3.5 0 0 0 2.5-2.5A36.5 36.5 0 0 0 24 12a36.5 36.5 0 0 0-.5-5.8zM9.8 15.5V8.5l6.3 3.5-6.3 3.5z"/></svg></button>
+        </div>
 
         <button class="icon-btn menu-btn" type="button" data-action="open-menu" aria-label="Menu">
           <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16v2H4V6zm0 5h16v2H4v-2zm0 5h16v2H4v-2z"/></svg>
@@ -132,10 +141,22 @@
   </div>
 </section>
 
+
+
+<section class="section reveal">
+  <h2 data-i18n="products.filters"></h2>
+  <div class="pill" data-product-filters style="display:inline-flex;gap:6px;">
+    <button type="button" data-filter="all" aria-pressed="true" data-i18n="products.filter.all"></button>
+    <button type="button" data-filter="games" aria-pressed="false" data-i18n="products.filter.games"></button>
+    <button type="button" data-filter="apps" aria-pressed="false" data-i18n="products.filter.apps"></button>
+    <button type="button" data-filter="web" aria-pressed="false" data-i18n="products.filter.web"></button>
+  </div>
+</section>
+
 <section class="section reveal">
   <h2 data-i18n="products.featured"></h2>
   <div class="grid">
-    <article class="card reveal delay-1">
+    <article class="card reveal delay-1" data-product-card data-category="games">
       <div class="tag">
         <span class="badge" data-i18n="products.p1.type"></span>
         <span class="badge accent" data-i18n="products.p1.status"></span>
@@ -150,7 +171,7 @@
       </ul>
     </article>
 
-    <article class="card reveal delay-2">
+    <article class="card reveal delay-2" data-product-card data-category="apps">
       <div class="tag">
         <span class="badge" data-i18n="products.p2.type"></span>
         <span class="badge accent" data-i18n="products.p2.status"></span>
@@ -165,7 +186,7 @@
       </ul>
     </article>
 
-    <article class="card reveal delay-3">
+    <article class="card reveal delay-3" data-product-card data-category="web">
       <div class="tag">
         <span class="badge" data-i18n="products.p3.type"></span>
         <span class="badge accent" data-i18n="products.p3.status"></span>
