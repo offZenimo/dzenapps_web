@@ -11,7 +11,7 @@
   <title>DzenApps</title>
   <link rel="stylesheet" href="./assets/styles.css" />
 </head>
-<body data-page="about">
+<body data-page="services">
   <div class="bg-blobs" aria-hidden="true"></div>
   <a class="skip" href="#content">Skip to content</a>
 
@@ -66,43 +66,59 @@
     <div class="container">
       
 <section class="hero reveal">
-  <h1 data-i18n="about.title"></h1>
-  <p data-i18n="about.subtitle"></p>
+  <h1 data-i18n="services.title"></h1>
+  <p data-i18n="services.subtitle"></p>
   <div class="hero-actions">
-    <button class="btn primary" type="button" data-action="email" data-mail-subject-i18n="title.about" data-i18n="ui.contact"></button>
+    <button class="btn primary" type="button" data-action="email" data-mail-subject-i18n="title.services" data-i18n="services.cta"></button>
   </div>
 </section>
 
 <section class="section reveal">
-  <h2 data-i18n="about.missionTitle"></h2>
-  <p data-i18n="about.missionText"></p>
+  <div class="grid">
+    <article class="card reveal delay-1">
+      <div class="tag"><span class="badge">01</span><span class="badge good">Fast</span></div>
+      <h3 data-i18n="services.s1.title"></h3>
+      <p data-i18n="services.s1.text"></p>
+    </article>
+    <article class="card reveal delay-2">
+      <div class="tag"><span class="badge">02</span><span class="badge accent">Core</span></div>
+      <h3 data-i18n="services.s2.title"></h3>
+      <p data-i18n="services.s2.text"></p>
+    </article>
+    <article class="card reveal delay-3">
+      <div class="tag"><span class="badge">03</span><span class="badge">Long‑term</span></div>
+      <h3 data-i18n="services.s3.title"></h3>
+      <p data-i18n="services.s3.text"></p>
+    </article>
+    <article class="card reveal delay-3">
+      <div class="tag"><span class="badge">CTA</span></div>
+      <h3>Let’s talk</h3>
+      <p>We’ll ask a couple of questions and come back with a rough plan and estimate.</p>
+      <button class="btn primary" type="button" data-action="email" data-mail-subject-i18n="title.services">Email</button>
+    </article>
+  </div>
 </section>
 
 <section class="section reveal">
-  <h2 data-i18n="about.valuesTitle"></h2>
-  <ul>
-    <li data-i18n="about.v1"></li>
-    <li data-i18n="about.v2"></li>
-    <li data-i18n="about.v3"></li>
-  </ul>
-</section>
-
-<section class="section reveal">
-  <h2 data-i18n="about.contactTitle"></h2>
-  <div class="notice">
-    <div aria-hidden="true">✉️</div>
-    <div>
-      <p><strong data-i18n="about.emailLabel"></strong> <a href="mailto:dzenapps@gmail.com" data-i18n="about.emailValue"></a></p>
-      <p data-i18n="about.availability"></p>
-      <div class="hr"></div>
-      <p data-i18n="about.socialNote"></p>
+  <h2 data-i18n="services.packTitle"></h2>
+  <div class="cols">
+    <div class="mini reveal delay-1">
+      <strong data-i18n="services.pack1"></strong>
+      <p class="muted" style="margin-top:8px">Short, consistent, and easy to scan.</p>
+    </div>
+    <div class="mini reveal delay-2">
+      <strong data-i18n="services.pack2"></strong>
+      <p class="muted" style="margin-top:8px">So you always know what’s next.</p>
+    </div>
+    <div class="mini reveal delay-3">
+      <strong data-i18n="services.pack3"></strong>
+      <p class="muted" style="margin-top:8px">For maintenance and hand‑offs.</p>
+    </div>
+    <div class="mini reveal delay-3">
+      <strong>Tooling</strong>
+      <p class="muted" style="margin-top:8px">Docs, tasks, repos — whatever you prefer.</p>
     </div>
   </div>
-</section>
-
-<section class="section reveal">
-  <h2 data-i18n="about.locationTitle"></h2>
-  <p data-i18n="about.locationText"></p>
 </section>
 
     </div>

@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="./assets/styles.css" />
 </head>
 <body data-page="news">
+  <div class="bg-blobs" aria-hidden="true"></div>
   <a class="skip" href="#content">Skip to content</a>
 
   <header>
@@ -29,6 +30,7 @@
         <ul>
           <li><a class="nav-link" data-nav="home" href="./index.html" data-i18n="nav.home"></a></li>
           <li><a class="nav-link" data-nav="products" href="./products.html" data-i18n="nav.products"></a></li>
+          <li><a class="nav-link" data-nav="services" href="./services.html" data-i18n="nav.services"></a></li>
           <li><a class="nav-link" data-nav="about" href="./about.html" data-i18n="nav.about"></a></li>
           <li><a class="nav-link" data-nav="news" href="./news.html" data-i18n="nav.news"></a></li>
         </ul>
@@ -42,17 +44,19 @@
           <button type="button" data-lang="en" aria-pressed="false">EN</button>
           <button type="button" data-lang="be" aria-pressed="false">BE</button>
         </div>
-
+        <div class="pill" aria-label="Region">
+          <button type="button" data-region="global" aria-pressed="false" title="Global">🌍</button>
+          <button type="button" data-region="es" aria-pressed="false" title="ES">ES</button>
+          <button type="button" data-region="de" aria-pressed="false" title="DE">DE</button>
+        </div>
         <button class="btn" type="button" data-action="toggle-theme">
           <span data-i18n="ui.theme"></span>: <strong data-theme-label></strong>
         </button>
-
-        <button class="btn primary" type="button" data-action="email" data-i18n="ui.contact"></button>
-
+        <button class="btn primary" type="button" data-action="email" data-mail-subject-i18n="title.home" data-i18n="ui.contact"></button>
         <button class="icon-btn" type="button" data-social="x" aria-label="X"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.9 2H22l-6.8 7.8L23 22h-6.8l-5.3-6.9L4.9 22H2l7.3-8.4L1 2h7l4.8 6.2L18.9 2zm-1.2 18h1.7L6.2 3.9H4.3L17.7 20z"/></svg></button>
         <button class="icon-btn" type="button" data-social="linkedin" aria-label="LinkedIn"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.11 1 2.48 1c1.38 0 2.5 1.12 2.5 2.5zM0.5 23.5h4V7.5h-4v16zM8.5 7.5h3.8v2.2h.1c.5-1 1.9-2.2 4-2.2 4.3 0 5.1 2.8 5.1 6.5v9.5h-4v-8.4c0-2 0-4.5-2.8-4.5s-3.2 2.1-3.2 4.4v8.5h-4v-16z"/></svg></button>
         <button class="icon-btn" type="button" data-social="instagram" aria-label="Instagram"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm10 2H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3zm-5 3.5A5.5 5.5 0 1 1 6.5 13 5.5 5.5 0 0 1 12 7.5zm0 2A3.5 3.5 0 1 0 15.5 13 3.5 3.5 0 0 0 12 9.5zM18 6.3a1.1 1.1 0 1 1-1.1 1.1A1.1 1.1 0 0 1 18 6.3z"/></svg></button>
-        <button class="icon-btn" type="button" data-social="tiktok" aria-label="TikTok"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M16.5 2c.7 2.9 2.5 4.7 5.5 5v4.1c-2 0-3.8-.6-5.4-1.7V16c0 4-3.2 7-7.3 7-3.9 0-7.3-3.1-7.3-7.3 0-4.2 3.4-7.3 7.4-7.3.5 0 1 .1 1.5.2V13c-.5-.2-1-.4-1.6-.4-1.8 0-3.3 1.4-3.3 3.2 0 2 1.5 3.2 3.3 3.2 1.9 0 3.1-1.2 3.2-3.2V2h4z"/></svg></button>
+        <button class="icon-btn" type="button" data-social="tiktok" aria-label="TikTok"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M16.5 2c.7 2.9 2.5 4.7 5.5 5v4.1c-2 0-3.8-.6-5.4-1.7V16c0 4-3.2 7-7.3 7-3.9 0-7.3-3.1-7.3-7.3 0-4.2 3.4-7.3 7.4-7.3.5 0 1 .1 1.5 .2V13c-.5-.2-1-.4-1.6-.4-1.8 0-3.3 1.4-3.3 3.2 0 2 1.5 3.2 3.3 3.2 1.9 0 3.1-1.2 3.2-3.2V2h4z"/></svg></button>
       </div>
     
     </div>
@@ -61,34 +65,38 @@
   <main id="content">
     <div class="container">
       
-<section class="hero">
+<section class="hero reveal">
   <h1 data-i18n="news.title"></h1>
   <p data-i18n="news.subtitle"></p>
 </section>
 
-<section class="section">
-  <div class="notice">
-    <div aria-hidden="true">📝</div>
-    <div>
-      <p><strong data-i18n="news.emptyTitle"></strong></p>
-      <p data-i18n="news.emptyText"></p>
-    </div>
-  </div>
-
-  <div class="grid" style="margin-top:16px">
-    <article class="card">
-      <div class="tag"><span class="badge">2026</span> <span class="badge">Draft</span></div>
-      <h3>Website v1</h3>
-      <p>Placeholder post. Replace with real news.</p>
+<section class="section reveal">
+  <div class="grid">
+    <article class="card reveal delay-1">
+      <div class="tag"><span class="badge">2026‑02</span><span class="badge good">Update</span></div>
+      <h3 data-i18n="news.p1.title"></h3>
+      <p data-i18n="news.p1.text"></p>
+      <a class="btn" href="./products.html">→ Products</a>
     </article>
-    <article class="card">
-      <div class="tag"><span class="badge">Soon</span></div>
-      <h3>Release notes</h3>
-      <p>Placeholder post. Add your first product announcement.</p>
+    <article class="card reveal delay-2">
+      <div class="tag"><span class="badge">2026‑02</span><span class="badge">Draft</span></div>
+      <h3 data-i18n="news.p2.title"></h3>
+      <p data-i18n="news.p2.text"></p>
+      <a class="btn" href="./news.html">→</a>
+    </article>
+    <article class="card reveal delay-3">
+      <div class="tag"><span class="badge">2026‑02</span><span class="badge accent">Process</span></div>
+      <h3 data-i18n="news.p3.title"></h3>
+      <p data-i18n="news.p3.text"></p>
+      <a class="btn" href="./services.html">→ Services</a>
+    </article>
+    <article class="card reveal delay-3">
+      <div class="tag"><span class="badge">Next</span></div>
+      <h3>RSS / Blog</h3>
+      <p>Later we can switch to a tiny static blog (Markdown) without changing the design.</p>
+      <button class="btn primary" type="button" data-action="email" data-mail-subject-i18n="title.news">Email</button>
     </article>
   </div>
-
-  <p style="margin-top:14px"><small class="muted">Tip: you can turn this page into a simple blog later (Markdown + static generator).</small></p>
 </section>
 
     </div>
@@ -107,6 +115,11 @@
       </div>
     </div>
   </footer>
+
+  <div id="toast" class="toast" role="status" aria-live="polite">
+    <strong data-toast-text></strong>
+    <small data-toast-sub></small>
+  </div>
 
   <script src="./assets/i18n.js"></script>
   <script src="./assets/app.js"></script>
