@@ -563,3 +563,105 @@ header{min-height:86px}
 .team-body{padding:12px}
 .team-more-btn{padding:10px 12px}
 .team-expand-inner{padding:10px 12px 14px}
+
+/* v0.3.4: header stable (tagline length) */
+.header-inner{
+  display:grid;
+  grid-template-columns:auto 1fr auto;
+  align-items:center;
+  gap:16px;
+  min-height:112px;
+}
+header{min-height:112px}
+.brand{align-items:flex-start}
+.brand-text{min-height:44px}
+.brand span[data-i18n="meta.tagline"]{
+  display:block;
+  max-width:220px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+nav ul{justify-content:center}
+
+/* v0.3.4: controls stack (top: language + theme/mail, bottom: socials) */
+.controls{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-end;
+  gap:10px;
+}
+.controls-top{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.controls-socials{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.menu-btn{display:none}
+@media (max-width:980px){
+  nav{display:none}
+  .controls-socials{display:none}
+  .menu-btn{display:inline-flex}
+  .controls{flex-direction:row;align-items:center}
+}
+
+/* language pill fixed width */
+.pill[aria-label="Language"] button{width:44px; padding-inline:0}
+
+/* v0.3.4: theme toggle perfectly aligned */
+.icon-btn.theme{
+  width:56px;
+  height:36px;
+  padding:0;
+  border-radius:999px;
+  position:relative;
+  overflow:hidden;
+}
+.icon-btn.theme:before{
+  content:"";
+  position:absolute;
+  top:4px;left:4px;
+  width:28px;height:28px;
+  border-radius:999px;
+  background:color-mix(in srgb,var(--surface) 94%,transparent);
+  box-shadow:var(--shadow);
+  transition:transform .22s ease;
+  z-index:1;
+}
+html[data-theme="light"] .icon-btn.theme:before{ transform:translateX(20px); }
+html[data-theme="dark"] .icon-btn.theme:before{ transform:translateX(0); }
+.icon-btn.theme .sun,
+.icon-btn.theme .moon{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  width:16px;height:16px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:2;
+  opacity:.75;
+  pointer-events:none;
+}
+.icon-btn.theme .sun{left:10px}
+.icon-btn.theme .moon{right:10px}
+.icon-btn.theme .sun svg,.icon-btn.theme .moon svg{display:block;width:16px;height:16px}
+
+/* v0.3.4: social flags */
+.flags{display:inline-flex;gap:6px;align-items:center}
+.flag{width:18px;height:12px;border-radius:3px;border:1px solid var(--border);box-shadow:0 1px 6px rgba(0,0,0,.18)}
+
+/* v0.3.4: team grid 4 cards per row */
+.team-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:14px;
+}
+@media (max-width:1200px){ .team-grid{grid-template-columns:repeat(3,1fr)} }
+@media (max-width:980px){ .team-grid{grid-template-columns:repeat(2,1fr)} }
+@media (max-width:640px){ .team-grid{grid-template-columns:1fr} }
+.team-photo{height:160px}

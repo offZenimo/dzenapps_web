@@ -9,6 +9,18 @@ const SOCIAL_PREF_PREFIX="dzenapps_social_pref_";
  */
 const assetBase = document.body?.dataset?.assets || "./";
 
+
+function renderSocialLocaleButton(btn, locale, label){
+  if(locale === "en"){
+    btn.innerHTML = `<span class="flags">
+      <img class="flag" alt="GB" src="${assetBase}assets/flags/gb.svg">
+      <img class="flag" alt="US" src="${assetBase}assets/flags/us.svg">
+    </span><span class="label">${label}</span>`;
+  } else {
+    btn.innerHTML = `<img class="flag" alt="" src="${assetBase}assets/flags/${locale}.svg"><span class="label">${label}</span>`;
+  }
+}
+
 const SOCIAL_LINKS = {
   x: "",              // direct
   linkedin: "",       // direct
@@ -259,4 +271,16 @@ document.addEventListener("DOMContentLoaded", ()=>{
   modal.addEventListener("transitionend", ()=>{
     // no-op
   });
+});
+
+/* v0.3.4: modal EN flags fallback */
+function forceEnFlags(){
+  const btn = document.querySelector('#socialModal [data-social-locale="en"]');
+  if(!btn) return;
+  const label = btn.textContent && btn.textContent.trim() ? btn.textContent.trim() : "English";
+  renderSocialLocaleButton(btn, "en", label);
+}
+document.addEventListener("click", (e)=>{
+  const b = e.target.closest && e.target.closest("[data-social]");
+  if(b){ setTimeout(forceEnFlags, 0); }
 });
