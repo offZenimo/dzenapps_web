@@ -1068,3 +1068,64 @@ html[data-theme="dark"] .icon-btn.theme:before{ transform:translateX(0); }
   border-color:color-mix(in srgb,var(--text) 18%,transparent) !important;
   background-clip:padding-box;
 }
+
+/* =======================================================================
+   FINAL OVERRIDE — restore Theme Toggle look from v0.3.9 (pill switch)
+   (This block is appended intentionally to win over previous overrides.)
+   ======================================================================= */
+.icon-btn.theme{
+  width:64px !important;
+  height:36px !important;
+  border-radius:999px !important;
+  padding:0 !important;
+  padding-inline:6px !important;
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  position:relative !important;
+  overflow:hidden !important;
+}
+
+.icon-btn.theme:before{
+  content:"" !important;
+  position:absolute !important;
+  top:4px !important;
+  left:4px !important;
+  width:28px !important;
+  height:28px !important;
+  border-radius:999px !important;
+  background:color-mix(in srgb,var(--surface) 94%,transparent) !important;
+  box-shadow:var(--shadow) !important;
+  transition:transform .22s ease !important;
+  z-index:1 !important;
+}
+
+/* knob position */
+html[data-theme="light"] .icon-btn.theme:before{ transform:translateX(28px) !important; }
+html[data-theme="dark"]  .icon-btn.theme:before{ transform:translateX(0px) !important; }
+
+/* icons */
+.icon-btn.theme .sun,
+.icon-btn.theme .moon{
+  position:absolute !important;
+  top:50% !important;
+  inset:auto !important;
+  transform:translateY(-50%) !important;
+  width:16px !important;
+  height:16px !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  opacity:.7 !important;
+  pointer-events:none !important;
+  z-index:2 !important;
+}
+.icon-btn.theme .sun{ left:10px !important; }
+.icon-btn.theme .moon{ right:10px !important; }
+
+.icon-btn.theme .sun svg,
+.icon-btn.theme .moon svg{
+  display:block !important;
+  width:16px !important;
+  height:16px !important;
+}
