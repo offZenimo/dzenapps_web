@@ -11,14 +11,16 @@ var assetBase = (document.body && document.body.dataset && document.body.dataset
 
 
 function renderSocialLocaleButton(btn, locale, label){
+  var flagsHtml = "";
   if(locale === "en"){
-    btn.innerHTML = `<span class="flags">
-      <img class="flag" alt="GB" src="${assetBase}assets/flags/gb.svg">
-      <img class="flag" alt="US" src="${assetBase}assets/flags/us.svg">
-    </span><span class="label">${label}</span>`;
-  } else {
-    renderSocialLocaleButton(btn, locale, label);
+    flagsHtml = `<img class="flag" alt="GB" src="${assetBase}assets/flags/gb.svg">
+      <img class="flag" alt="US" src="${assetBase}assets/flags/us.svg">`;
+  } else if(locale === "es"){
+    flagsHtml = `<img class="flag" alt="ES" src="${assetBase}assets/flags/es.svg">`;
+  } else if(locale === "de"){
+    flagsHtml = `<img class="flag" alt="DE" src="${assetBase}assets/flags/de.svg">`;
   }
+  btn.innerHTML = `<span class="flags">${flagsHtml}</span><span class="label">${label}</span>`;
 }
 
 const SOCIAL_LINKS = {
