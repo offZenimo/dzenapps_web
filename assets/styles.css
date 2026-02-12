@@ -872,22 +872,111 @@ html[data-theme="dark"] .icon-btn.theme:before{ transform:translateX(0); }
 @media (max-width:980px){
   .pill[aria-label="Language"]{display:none !important;}
   .lang-pop{display:inline-flex;}
-  .controls-top .control-group a[aria-label="Email"]{display:none !important;}
-  .controls-socials{display:none !important;}
+  /* hide email icon in header on mobile (it exists in burger menu) */
+  .controls-top .control-group [data-action="email"]{display:none !important;}
 }
+
+@media (max-width:520px){
+  /* extra space: hide tagline on very small screens */
+  .brand span[data-i18n="meta.tagline"]{display:none !important;}
+}
+
+
 /* v0.3.8: team card flex */
 .team-card-v2{display:flex !important; flex-direction:column !important;}
 
-/* v0.3.11: mobile language menu shows only non-selected languages */
+/* v0.3.10: theme button centering + padding */
+.icon-btn.theme{
+  width:44px;
+  height:36px;
+  padding:0;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+}
+.icon-btn.theme .icon{
+  width:18px;
+  height:18px;
+}
+
+/* v0.3.10: align language pill height on desktop */
+.pill[aria-label="Language"]{height:36px; align-items:center;}
+.pill[aria-label="Language"] button{height:32px; display:flex; align-items:center; justify-content:center;}
+
+/* v0.3.10: hero action buttons equal height */
+.hero-actions .btn{
+  min-height:48px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+
+/* v0.3.7.2: mobile language dropdown styled like desktop + animated */
+.lang-trigger{transition:transform .08s ease, background .12s ease;}
+.lang-trigger:hover{transform:translateY(-1px);}
+
+.lang-trigger .chev{transition:transform .18s ease;}
+.lang-pop.open .lang-trigger .chev{transform:rotate(180deg);}
+
+/* Override legacy display:none to allow animation (menu is absolutely positioned) */
+.lang-menu{
+  display:flex !important;
+  flex-direction:column;
+  gap:8px;
+  opacity:0;
+  transform:translateY(-8px) scale(.98);
+  pointer-events:none;
+  visibility:hidden;
+  transition:opacity .18s ease, transform .18s ease, visibility 0s linear .18s;
+}
+.lang-pop.open .lang-menu{
+  opacity:1;
+  transform:translateY(0) scale(1);
+  pointer-events:auto;
+  visibility:visible;
+  transition:opacity .18s ease, transform .18s ease, visibility 0s;
+}
+
+/* Buttons in dropdown: same feel as desktop pill */
+.lang-menu button{
+  height:32px;
+  border-radius:999px;
+  border:1px solid var(--border);
+  background:color-mix(in srgb,var(--surface) 78%,transparent);
+  color:var(--text);
+  padding:8px 10px;
+  font-size:12px;
+  letter-spacing:.3px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition:background .12s ease, transform .08s ease;
+}
+.lang-menu button:hover{transform:translateY(-1px); background:color-mix(in srgb,var(--accent) 14%, color-mix(in srgb,var(--surface) 78%,transparent));}
+
+/* In dropdown list show only non-selected languages */
 .lang-menu button[aria-pressed="true"]{display:none;}
 
-/* v0.3.11: hero actions equal height */
-.hero-actions .btn{min-height:48px;display:flex;align-items:center;justify-content:center;}
+/* v0.3.7.2: dropdown panel contrast */
+.lang-menu{
+  background:color-mix(in srgb,var(--surface) 92%,transparent);
+}
 
-/* v0.3.11: theme toggle icons away from edges */
-.icon-btn.theme .sun{left:13px !important;}
-.icon-btn.theme .moon{right:13px !important;}
-
-/* v0.3.11: align language pill buttons */
-.pill[aria-label="Language"]{height:36px;display:flex;align-items:center;}
-.pill[aria-label="Language"] button{height:32px;display:flex;align-items:center;justify-content:center;}
+/* v0.3.7.2: team cards taller (x1.6) + stable photo sizing */
+.team-card-v2{overflow:hidden;}
+.team-photo{
+  width:100%;
+  height:384px; /* 240 * 1.6 */
+  flex:0 0 auto;
+  overflow:hidden;
+  background-size:cover;
+  background-position:center;
+}
+.team-photo img{
+  width:100%;
+  height:100%;
+  display:block;
+  object-fit:cover;
+}
+.team-body{padding:22px;} /* 14 * 1.6 ≈ 22 */
