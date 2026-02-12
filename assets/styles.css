@@ -877,3 +877,102 @@ html[data-theme="dark"] .icon-btn.theme:before{ transform:translateX(0); }
 
 /* v0.3.8: team card flex */
 .team-card-v2{display:flex !important; flex-direction:column !important;}
+
+/* v0.3.9: TEAM grid fix (cards must not inherit grid-column: span 6) */
+.team-grid .card,
+.team-grid .team-card-v2{
+  grid-column: auto !important;
+}
+.team-card-v2{
+  padding:14px !important;
+}
+.team-photo{
+  height:120px !important;
+  border-radius:14px !important;
+}
+.team-body{padding-top:10px !important}
+.team-more-btn{min-height:42px !important}
+
+/* v0.3.9: XS language dropdown (vertical list) */
+.pill.lang-xs{display:none; position:relative; padding:6px; gap:0}
+.pill.lang-xs .lang-trigger{width:48px;height:36px;border-radius:999px}
+.pill.lang-xs .lang-trigger .icon{width:16px;height:16px;opacity:.8}
+.pill.lang-xs .lang-pop{
+  position:absolute; top:calc(100% + 10px); right:0;
+  display:none; flex-direction:column; gap:6px;
+  min-width:92px;
+  padding:10px;
+  border-radius:16px;
+  border:1px solid var(--border);
+  background:color-mix(in srgb,var(--surface) 92%,transparent);
+  box-shadow:var(--shadow);
+  z-index:50;
+}
+.pill.lang-xs .lang-pop.open{display:flex}
+.pill.lang-xs .lang-item{
+  height:36px; border-radius:12px;
+  border:1px solid var(--border);
+  background:transparent;
+  color:var(--text);
+  font-weight:600;
+  display:flex; align-items:center; justify-content:center;
+}
+.pill.lang-xs .lang-item[aria-pressed="true"]{
+  background:color-mix(in srgb,var(--accent) 18%,transparent);
+  border-color:color-mix(in srgb,var(--accent) 35%,var(--border));
+}
+
+/* show dropdown only on very small screens */
+@media (max-width:360px){
+  .pill[aria-label="Language"]{display:none !important;}
+  .pill.lang-xs{display:flex !important;}
+}
+
+/* v0.3.9: hide mail in header on tiny screens */
+@media (max-width:360px){
+  .control-group [data-action="email"]{display:none !important;}
+}
+
+/* v0.3.9: SE header stabilization */
+@media (max-width:360px){
+  .brand span[data-i18n="meta.tagline"]{display:none !important;} /* reduce header height */
+  .brand .logo{width:40px !important; height:40px !important;}
+  .header-inner{gap:10px !important; align-items:center !important;}
+  .controls{gap:8px !important;}
+  .controls-top{gap:8px !important;}
+  .pill[aria-label="Theme"]{padding:6px !important;}
+  .menu-btn{width:40px !important; height:40px !important;}
+}
+
+/* v0.3.9: theme toggle spacing */
+.icon-btn.theme{
+  width:64px !important;
+  padding-inline:6px !important;
+}
+.icon-btn.theme:before{
+  width:28px !important;
+  height:28px !important;
+}
+html[data-theme="light"] .icon-btn.theme:before{ transform:translateX(28px) !important; }
+html[data-theme="dark"]  .icon-btn.theme:before{ transform:translateX(0px) !important; }
+
+/* v0.3.9: align language pill buttons */
+.pill[aria-label="Language"]{
+  height:36px !important;
+  display:flex !important;
+  align-items:center !important;
+}
+.pill[aria-label="Language"] button{
+  height:32px !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+}
+
+/* v0.3.9: hero buttons equal height */
+.hero-actions .btn{
+  min-height:48px !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+}

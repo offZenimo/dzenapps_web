@@ -233,6 +233,7 @@ function init(){
   const theme = (themeStored==="light"||themeStored==="dark") ? themeStored : "dark";
   setTheme(theme);
   setLocale(window.__locale);
+  updateLangTrigger();
 
   // theme toggle
   document.querySelectorAll("[data-action='toggle-theme']").forEach(btn=>{
@@ -244,7 +245,7 @@ function init(){
 
   // language toggle
   document.querySelectorAll("[data-lang]").forEach(btn=>{
-    btn.addEventListener("click", ()=>setLocale(btn.getAttribute("data-lang")));
+    btn.addEventListener("click", ()=>{ setLocale(btn.getAttribute("data-lang")); if(typeof closeLangMenu==="function") closeLangMenu(); });
   });
 
   // xs language menu
