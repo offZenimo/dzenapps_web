@@ -805,3 +805,75 @@ html[data-theme="dark"] .icon-btn.theme:before{ transform:translateX(0); }
 @media (max-width:1200px){ .team-grid{grid-template-columns:repeat(3,minmax(0,1fr)) !important;} }
 @media (max-width:980px){ .team-grid{grid-template-columns:repeat(2,minmax(0,1fr)) !important;} }
 @media (max-width:640px){ .team-grid{grid-template-columns:1fr !important;} }
+
+
+/* v0.3.8: TEAM cards layout to match sketch (smaller, 4-up) */
+.team-grid{
+  display:grid !important;
+  grid-template-columns:repeat(4,minmax(0,1fr)) !important;
+  gap:14px !important;
+}
+.team-grid .card{ grid-column:auto !important; } /* override global .card span rule */
+.team-card-v2{
+  padding:0 !important;
+  overflow:hidden;
+}
+.team-photo{
+  height:180px !important;
+}
+.team-body{
+  padding:14px 14px 12px;
+}
+.team-more-btn{
+  width:100%;
+  margin-top:10px;
+}
+@media (max-width:1200px){ .team-grid{grid-template-columns:repeat(3,minmax(0,1fr)) !important;} }
+@media (max-width:980px){ .team-grid{grid-template-columns:repeat(2,minmax(0,1fr)) !important;} }
+@media (max-width:640px){ .team-grid{grid-template-columns:1fr !important;} }
+
+/* v0.3.8: XS mobile language dropdown + hide mail icon (it exists in menu) */
+.lang-pop{display:none;position:relative}
+.lang-trigger{
+  height:36px;
+  border-radius:999px;
+  border:1px solid var(--border);
+  background:color-mix(in srgb,var(--surface) 78%,transparent);
+  padding:0 12px;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  font-weight:600;
+}
+.lang-trigger .chev{width:14px;height:14px;opacity:.75}
+.lang-menu{
+  display:none;
+  position:absolute;
+  right:0;
+  top:calc(100% + 10px);
+  min-width:150px;
+  padding:10px;
+  border-radius:16px;
+  border:1px solid var(--border);
+  background:color-mix(in srgb,var(--surface) 92%,transparent);
+  box-shadow:var(--shadow);
+  z-index:60;
+}
+.lang-pop.open .lang-menu{display:flex;flex-direction:column;gap:8px}
+.lang-menu button{
+  width:100%;
+  text-align:left;
+  justify-content:flex-start;
+  padding:10px 12px;
+  border-radius:12px;
+  border:1px solid var(--border);
+  background:color-mix(in srgb,var(--surface) 70%,transparent);
+}
+@media (max-width:360px){
+  .pill[aria-label="Language"]{display:none !important;}
+  .lang-pop{display:inline-flex;}
+  .controls-top .control-group a[aria-label="Email"]{display:none !important;}
+}
+
+/* v0.3.8: team card flex */
+.team-card-v2{display:flex !important; flex-direction:column !important;}
