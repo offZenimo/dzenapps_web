@@ -17,7 +17,7 @@ function renderSocialLocaleButton(btn, locale, label){
       <img class="flag" alt="US" src="${assetBase}assets/flags/us.svg">
     </span><span class="label">${label}</span>`;
   } else {
-    renderSocialLocaleButton(btn, locale, label);
+    btn.innerHTML = `<img class="flag" alt="" src="${assetBase}assets/flags/${locale}.svg"><span class="label">${label}</span>`;
   }
 }
 
@@ -36,18 +36,11 @@ function normalizeLocale(input){
   const base=raw.toLowerCase().split("-")[0];
   return SUPPORTED.includes(base)?base:null;
 }
-function t(key, vars){
-  if(!vars) vars = {};
-  var dict = (I18N && I18N[window.__locale]) ? I18N[window.__locale] : (I18N ? I18N.en : {});
-  var raw;
-  if(dict && Object.prototype.hasOwnProperty.call(dict, key)) raw = dict[key];
-  else if(I18N && I18N.en && Object.prototype.hasOwnProperty.call(I18N.en, key)) raw = I18N.en[key];
-  else raw = key;
-  return String(raw).replace(/\{(\w+)\}/g, function(_, k){
-    return (typeof vars[k] !== "undefined") ? String(vars[k]) : ("{" + k + "}");
-  });
+function t(key, vars={}){
+  const dict=I18N[window.__locale]||I18N.en;
+  var raw = (dict && Object.prototype.hasOwnProperty.call(dict, key)) ? dict[key] : ((I18N.en && Object.prototype.hasOwnProperty.call(I18N.en, key)) ? I18N.en[key] : key);
+  return raw.replace(/\{(\w+)\}/g, function(_, k){ return (vars && Object.prototype.hasOwnProperty.call(vars, k) && vars[k] != null) ? vars[k] : ("{" + k + "}"); });
 }
-
 function setTheme(theme){
   document.documentElement.setAttribute("data-theme", theme);
   localStorage.setItem(THEME_KEY, theme);
@@ -66,8 +59,8 @@ function applyTranslations(){
   const year = new Date().getFullYear();
   const date = new Date().toISOString().slice(0,10);
 
-  var __tEl = document.querySelector("[data-page-title-i18n]");
-  var customTitleKey = __tEl ? __tEl.getAttribute("data-page-title-i18n") : null;
+  var __titleNode = document.querySelector("[data-page-title-i18n]");
+  var customTitleKey = __titleNode ? __titleNode.getAttribute("data-page-title-i18n") : null;
   if(customTitleKey){
     document.title = t(customTitleKey, {year, date});
   }else{
@@ -102,25 +95,10 @@ function toggleLangMenu(){
 }
 
 function updateLangStates(){
-  // desktop pill + dropdown menu aria-pressed
-  var all = document.querySelectorAll("[data-lang]");
-  for(var i=0;i<all.length;i++){
-    var btn = all[i];
-    var isActive = (btn.getAttribute("data-lang") === window.__locale);
-    btn.setAttribute("aria-pressed", String(isActive));
-  }
-  // dropdown menu: hide current language, show others
-  var menu = document.querySelector(".lang-menu");
-  if(menu){
-    var items = menu.querySelectorAll("[data-lang]");
-    for(var j=0;j<items.length;j++){
-      var b = items[j];
-      var isCur = (b.getAttribute("data-lang") === window.__locale);
-      b.style.display = isCur ? "none" : "";
-    }
-  }
+  document.querySelectorAll("[data-lang]").forEach(btn=>{
+    btn.setAttribute("aria-pressed", String(btn.getAttribute("data-lang")===window.__locale));
+  });
 }
-
 function wireReveal(){
   const items=document.querySelectorAll(".reveal");
   if(!("IntersectionObserver" in window)){
@@ -179,7 +157,7 @@ function openSocialChooser(network){
     const locale = btn.getAttribute("data-social-locale");
     
     const label = t(`social.${locale}`);
-    renderSocialLocaleButton(btn, locale, label);
+    btn.innerHTML = `<img class="flag" alt="" src="${assetBase}assets/flags/${locale}.svg"><span class="label">${label}</span>`;
     btn.onclick = ()=>{
       localStorage.setItem(SOCIAL_PREF_PREFIX + network, locale);
       const links = SOCIAL_LINKS[network] || {};
@@ -278,15 +256,7 @@ function init(){
   document.addEventListener("click", (e)=>{
     const wrap=document.querySelector(".lang-pop");
     if(!wrap) return;
-    if(wrap.classList.contains("open")){
-      var t = e.target;
-      var inside = false;
-      while(t){
-        if(t.classList && t.classList.contains("lang-pop")){ inside = true; break; }
-        t = t.parentElement;
-      }
-      if(!inside) closeLangMenu();
-    }
+    if(wrap.classList.contains("open") && !e.target.closest(".lang-pop")) closeLangMenu();
   });
 
   // email
@@ -298,7 +268,7 @@ function init(){
   });
 
   // current nav
-  var current = (document.body && document.body.dataset && document.body.dataset.page) ? document.body.dataset.page : null;
+  var current = (document.body && document.body.dataset) ? document.body.dataset.page : null;
   if(current){
     const link=document.querySelector(`[data-nav='${current}']`);
     if(link) link.setAttribute("aria-current","page");
@@ -328,9 +298,7 @@ function init(){
   wireReveal();
   applyTranslations();
 }
-document.addEventListener("DOMContentLoaded", function(){
-  try{ init(); }catch(err){ console.error(err); }
-});
+document.addEventListener("DOMContentLoaded", init);
 
 /* v0.3.3: ensure EN flags (safety) */
 document.addEventListener("DOMContentLoaded", ()=>{
