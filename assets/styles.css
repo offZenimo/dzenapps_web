@@ -885,20 +885,6 @@ html[data-theme="dark"] .icon-btn.theme:before{ transform:translateX(0); }
 /* v0.3.8: team card flex */
 .team-card-v2{display:flex !important; flex-direction:column !important;}
 
-/* v0.3.10: theme button centering + padding */
-.icon-btn.theme{
-  width:44px;
-  height:36px;
-  padding:0;
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-}
-.icon-btn.theme .icon{
-  width:18px;
-  height:18px;
-}
-
 /* v0.3.10: align language pill height on desktop */
 .pill[aria-label="Language"]{height:36px; align-items:center;}
 .pill[aria-label="Language"] button{height:32px; display:flex; align-items:center; justify-content:center;}
@@ -983,149 +969,16 @@ html[data-theme="dark"] .icon-btn.theme:before{ transform:translateX(0); }
 
 
 
-/* ===== v0.3.7.2.1 hotfix (requested) ===== */
 
-/* 1) Theme toggle – revert to v0.3.9 behavior + center icons */
-.icon-btn.theme{
-  width:42px;
-  height:42px;
-  padding:0 !important;
-  border-radius:999px;
-  display:grid !important;
-  place-items:center;
-  position:relative;
-  overflow:hidden;
-}
-.icon-btn.theme:before{content:none !important;}
-.icon-btn.theme .sun,
-.icon-btn.theme .moon{
-  position:absolute;
-  inset:0;
-  display:grid;
-  place-items:center;
-}
-.icon-btn.theme .sun svg,
-.icon-btn.theme .moon svg{
-  width:18px;
-  height:18px;
-  display:block;
-}
-
-/* 2) Mobile language selector – proper contrast + desktop-like styling + animation */
-.lang-trigger{color:var(--text) !important;}
-.lang-trigger .chev{
-  color:var(--text);
-  transition:transform .18s ease,opacity .18s ease;
-}
-.lang-pop.open .lang-trigger .chev{transform:rotate(180deg);}
-
-.lang-menu{
-  display:flex !important;
-  flex-direction:column;
-  gap:8px;
-  opacity:0;
-  transform:translateY(-6px) scale(.98);
-  pointer-events:none;
-  visibility:hidden;
-  transition:opacity .18s ease, transform .18s ease, visibility 0s linear .18s;
-}
-.lang-pop.open .lang-menu{
-  opacity:1;
-  transform:translateY(0) scale(1);
-  pointer-events:auto;
-  visibility:visible;
-  transition:opacity .18s ease, transform .18s ease, visibility 0s;
-}
-.lang-menu button{
-  color:var(--text) !important;
-  font-size:12px;
-  letter-spacing:.3px;
-  border-radius:999px !important;
-  border:1px solid var(--border) !important;
-  background:color-mix(in srgb,var(--surface) 78%,transparent) !important;
-}
-.lang-menu button:hover{
-  background:color-mix(in srgb,var(--surface) 88%,transparent) !important;
-}
-
-/* 3) Mobile header – hide mail icon, show tagline */
-@media (max-width:980px){
-  .controls-top .control-group a[aria-label="Email"]{display:none !important;}
-  .brand span[data-i18n="meta.tagline"]{
-    display:-webkit-box !important;
-    -webkit-line-clamp:2;
-    -webkit-box-orient:vertical;
-    overflow:hidden;
-    max-width:170px;
-  }
-}
-@media (max-width:520px){
-  .brand span[data-i18n="meta.tagline"]{display:-webkit-box !important;}
-}
-
-/* 4) Gradient buttons – remove edge artifacts caused by transparent border */
-.btn.primary{
-  border-color:color-mix(in srgb,var(--text) 18%,transparent) !important;
-  background-clip:padding-box;
-}
-
-/* =======================================================================
-   FINAL OVERRIDE — restore Theme Toggle look from v0.3.9 (pill switch)
-   (This block is appended intentionally to win over previous overrides.)
-   ======================================================================= */
+/* v0.3.9: theme toggle spacing */
 .icon-btn.theme{
   width:64px !important;
-  height:36px !important;
-  border-radius:999px !important;
-  padding:0 !important;
   padding-inline:6px !important;
-  display:inline-flex !important;
-  align-items:center !important;
-  justify-content:center !important;
-  position:relative !important;
-  overflow:hidden !important;
 }
-
 .icon-btn.theme:before{
-  content:"" !important;
-  position:absolute !important;
-  top:4px !important;
-  left:4px !important;
   width:28px !important;
   height:28px !important;
-  border-radius:999px !important;
-  background:color-mix(in srgb,var(--surface) 94%,transparent) !important;
-  box-shadow:var(--shadow) !important;
-  transition:transform .22s ease !important;
-  z-index:1 !important;
 }
-
-/* knob position */
 html[data-theme="light"] .icon-btn.theme:before{ transform:translateX(28px) !important; }
 html[data-theme="dark"]  .icon-btn.theme:before{ transform:translateX(0px) !important; }
 
-/* icons */
-.icon-btn.theme .sun,
-.icon-btn.theme .moon{
-  position:absolute !important;
-  top:50% !important;
-  inset:auto !important;
-  transform:translateY(-50%) !important;
-  width:16px !important;
-  height:16px !important;
-  display:flex !important;
-  align-items:center !important;
-  justify-content:center !important;
-  opacity:.7 !important;
-  pointer-events:none !important;
-  z-index:2 !important;
-}
-.icon-btn.theme .sun{ left:10px !important; }
-.icon-btn.theme .moon{ right:10px !important; }
-
-.icon-btn.theme .sun svg,
-.icon-btn.theme .moon svg{
-  display:block !important;
-  width:16px !important;
-  height:16px !important;
-}
