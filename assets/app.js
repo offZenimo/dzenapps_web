@@ -251,3 +251,12 @@ function init(){
   applyTranslations();
 }
 document.addEventListener("DOMContentLoaded", init);
+
+/* v0.3.3: ensure EN flags (safety) */
+document.addEventListener("DOMContentLoaded", ()=>{
+  const modal=document.getElementById("socialModal");
+  if(!modal) return;
+  modal.addEventListener("transitionend", ()=>{
+    // no-op
+  });
+});

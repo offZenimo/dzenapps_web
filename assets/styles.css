@@ -541,3 +541,25 @@ nav ul{gap:8px;justify-content:center}
 .profile-meta small{color:var(--muted)}
 .profile-links{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
 .profile-links a{flex:1;justify-content:center}
+
+/* v0.3.3: lock header height & language pill width */
+header{min-height:86px}
+.header-inner{min-height:86px}
+.pill[aria-label="Language"] button{
+  width:44px; /* fixed width so RU/EN/BE doesn't change layout */
+  padding-inline:0;
+}
+.controls{gap:10px;flex-wrap:nowrap}
+
+/* v0.3.3: theme toggle icon centering */
+.icon-btn.theme .sun,.icon-btn.theme .moon{
+  width:16px;height:16px;
+  display:flex;align-items:center;justify-content:center;
+}
+.icon-btn.theme .sun svg,.icon-btn.theme .moon svg{display:block}
+
+/* v0.3.3: team card sizing */
+.team-photo{height:170px}
+.team-body{padding:12px}
+.team-more-btn{padding:10px 12px}
+.team-expand-inner{padding:10px 12px 14px}
